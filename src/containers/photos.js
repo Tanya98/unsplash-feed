@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { Button, ButtonIcon } from 'rmwc/Button';
 import Photo from '../components/photo.js';
 
-class Auth extends Component {
+class Photos extends Component {
     constructor(props) {
         super(props);
         this.loadPhotos = this.loadPhotos.bind(this);
