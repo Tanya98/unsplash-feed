@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/index.scss';
-import { setAccessTokenUnplash, listPhoto } from '../unsplash/unsplash';
+import { listPhoto } from '../unsplash/unsplash';
 import { loadPhoto } from '../action/action';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -11,16 +11,6 @@ class Photos extends Component {
     constructor(props) {
         super(props);
         this.loadPhotos = this.loadPhotos.bind(this);
-        if (localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === '' || !localStorage.getItem('token'))
-            this.setAccessToken();
-    }
-
-    setAccessToken() {
-        const code = location.search.split('code=')[1];
-
-        if (code) {
-            setAccessTokenUnplash(code);
-        }
     }
 
     loadPhotos() {
@@ -73,4 +63,4 @@ const mapDispatchToProps = dispatch => {
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(Auth));
+)(Photos));

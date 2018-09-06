@@ -3,11 +3,27 @@ import { Button, ButtonIcon } from 'rmwc/Button';
 import { authenticationUrl } from '../unsplash/unsplash';
 import '../styles/index.scss';
 import { withRouter, NavLink, Link } from 'react-router-dom';
+import { setAccessTokenUnplash } from '../unsplash/unsplash';
 import { connect } from 'react-redux';
 
 
 class Home extends React.Component {
  
+    constructor(props) {
+        super(props);
+        if (localStorage.getItem('token') === 'undefined' || localStorage.getItem('token') === '' || !localStorage.getItem('token'))
+            this.setAccessToken();
+    }
+
+    setAccessToken() {
+        const code = location.search.split('code=')[1];
+
+        if (code) {
+            localStorage.setItem('token', code);
+            setAccessTokenUnplash(code);
+        }
+    }
+
     handleClick() {
         location.assign(authenticationUrl);
     }
@@ -17,7 +33,7 @@ class Home extends React.Component {
         var button = null;
 
         if (token)
-            button = <NavLink to={`/auth`} className='but_auth'>Перейти</NavLink>;
+            button = <NavLink to={`/photos`} className='but_auth'>Перейти</NavLink>;
         else
             button = <button className='but_auth' onClick={this.handleClick.bind(this)}>Authorization</button>;
 
