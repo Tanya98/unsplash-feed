@@ -2,7 +2,8 @@ import Unsplash, { toJson } from 'unsplash-js';
 export const unsplash = new Unsplash({
     applicationId: "bb78a5821afc36acbb39c65811fdaa663574d073365fb3138d85081fc27fc17d",
     secret: "ade758127bdd0cd7035598d808c2e0dcc03b23679c60eee827ee2a5ed8245d8b",
-    callbackUrl: "http://localhost:8080/auth"
+    callbackUrl: "http://localhost:8080",
+    //callbackUrl: "https://youthful-kirch-579194.netlify.com"
 });
 
 export const authenticationUrl = unsplash.auth.getAuthenticationUrl([
